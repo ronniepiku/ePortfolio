@@ -367,6 +367,7 @@ function create(db) {
 	app.use('/api/viewdata', require(path.join(__dirname, config.server.routesDirectory, 'api/viewdata'))(db, logger));
 	app.use('/api/viewdataanalysis', require(path.join(__dirname, config.server.routesDirectory, 'api/viewdataanalysis'))(db, logger));
 	app.use('/CV', require(path.join(__dirname, config.server.routesDirectory, 'CV'))(db, logger));
+    app.use('/Dissertation', require(path.join(__dirname, config.server.routesDirectory, 'Dissertation'))(db, logger));
 	app.use('/api/wiki', require(path.join(__dirname, config.server.routesDirectory, 'api/wiki'))(db, logger));
 	app.use('/api/collage', require(path.join(__dirname, config.server.routesDirectory, 'api/collage'))(db, logger));
 	app.use('/api/ping', require(path.join(__dirname, config.server.routesDirectory, 'api/ping'))(db, logger));
