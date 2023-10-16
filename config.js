@@ -29,11 +29,7 @@ var config = {
 	        mainDb: 'heroku_h5zdpd40',
 	        useSSL: false,
 	        required: true,
-	        authenticate: true,
-	        authentication: {
-	            username: 'admin',
-	            password: 'd0gd4ys'
-	        },
+	        authenticate: false,
 	        collections: {
 	        	users: 'users',
 	        	active: 'active',
