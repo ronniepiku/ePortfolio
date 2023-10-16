@@ -11,7 +11,12 @@ var config = require('../config');
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
+var express = require('express');
+const forceHttps = require('express-force-https');
 const { MongoClient, ServerApiVersion } = require("mongodb");
+
+var app = express();
+app.use(forceHttps);
 
 // Create a MongoDB Atlas connection string
 const uri = "mongodb+srv://ronniepiku:Freeza21!@eportfolio.rfreo6u.mongodb.net/?retryWrites=true&w=majority";
@@ -22,7 +27,8 @@ const client = new MongoClient(uri,  {
       version: ServerApiVersion.v1,
       strict: true,
       deprecationErrors: true,
-  }
+  },
+  tls: true
 }
 );
 
@@ -53,28 +59,24 @@ function startServer(db) {
   var app = temp[0];
   var logger = temp[1];
 
-  var port = process.env.PORT || config.server.port;
-  app.set('port', port);
+  var port = normalizePort(process.env.PORT || config.server.port);
+app.set('port', port);
 
-  var server;
+var server;
 
-  if (config.server.useHttps) {
-    var options = {
-      key: fs.readFileSync(config.server.https.keyPath),
-      cert: fs.readFileSync(config.server.https.certPath)
-    };
-    server = https.createServer(options, app);
-    logger.info('HTTPS server listening on port %s', port);
-  } else {
-    server = http.createServer(app);
-    logger.info('HTTP server listening on port %s', port);
-  }
-
-  console.log('========================================');
-
-  server.listen(port);
-  server.on('error', onError);
+if (config.server.useHttps) {
+  var options = {
+    key: fs.readFileSync(config.server.https.keyPath),
+    cert: fs.readFileSync(config.server.https.certPath)
+  };
+  server = https.createServer(options, app);
+  console.log('HTTPS server listening on port %s', port);
+} else {
+  server = http.createServer(app);
+  console.log('HTTP server listening on port %s', port);
 }
+
+server.listen(port);
 
 /**
  * Normalize a port into a number, string, or false.
