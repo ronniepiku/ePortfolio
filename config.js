@@ -24,20 +24,18 @@ var config = {
             analytics: 'analytics.html',
 		},    
 		db: {
-			hostname: 'ac-xcfmeme-shard-00-00.rfreo6u.mongodb.net',
-	        port: 27017,
-	        mainDb: 'heroku_h5zdpd40',
-	        useSSL: false,
-	        required: true,
-	        authenticate: false,
-	        collections: {
-	        	users: 'users',
-	        	active: 'active',
-	        	pending: 'pending',
-	        	inactive: 'inactive',
-	        	oauthAccessTokens: 'oauthAccessTokens'
-	        }
-	    },
+			hostname: 'mongodb://ac-xcfmeme-shard-00-00.rfreo6u.mongodb.net:27017',
+			mainDb: 'heroku_h5zdpd40',
+			useSSL: true,
+			authenticate: false, 
+			collections: {
+			  users: 'users',
+			  active: 'active',
+			  pending: 'pending',
+			  inactive: 'inactive',
+			  oauthAccessTokens: 'oauthAccessTokens',
+			}
+		  },
 	    
 	    remindDelayHours: 24,
 	    
