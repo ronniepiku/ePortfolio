@@ -13,14 +13,6 @@ var https = require('https');
 var fs = require('fs');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
-/**
- * Replace these with your MongoDB Atlas credentials
- */
-const username = process.env.MONGO_USERNAME;
-const password = process.env.MONGO_PASSWORD;
-const cluster = ePortfolio.rfreo6u
-
-
 // Create a MongoDB Atlas connection string
 const uri = "mongodb+srv://ronniepiku:Freeza21!@eportfolio.rfreo6u.mongodb.net/?retryWrites=true&w=majority";
 
