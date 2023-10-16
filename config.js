@@ -27,7 +27,12 @@ var config = {
 			hostname: 'mongodb://ac-xcfmeme-shard-00-00.rfreo6u.mongodb.net:27017',
 			mainDb: 'heroku_h5zdpd40',
 			useSSL: false,
-			authenticate: false, 
+			required: true,
+			authenticate: true,
+			authentication: {
+	            username: 'admin',
+	            password: 'd0gd4ys'
+	        },
 			collections: {
 			  users: 'users',
 			  active: 'active',
