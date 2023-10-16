@@ -11,7 +11,7 @@ var config = require('../config');
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient } = require("mongodb");
 
 // Create a MongoDB Atlas connection string
 const uri = "mongodb+srv://ronniepiku:Freeza21!@eportfolio.rfreo6u.mongodb.net/?retryWrites=true&w=majority";
