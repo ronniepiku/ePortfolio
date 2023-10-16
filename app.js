@@ -58,20 +58,6 @@ function create(db) {
     } }));
 	//app.use(busboy());
 	app.use(cookieParser());
-    
-    /*setTimeout(function() {  
-        // Runs the test client
-        var runTestClient = require('./runTestClient');
-        console.log('Sending test message to Java server');
-        runTestClient.run('localhost', 8080, function() {
-            console.log('========================================');
-            console.log('Sending test message to C++ server');
-            runTestClient.run('localhost', 8081, function() {
-                console.log('========================================');
-            });
-        });
-    }, 1000);*/
-    
 
 	// Add document management functions
 	if (db) {
@@ -83,13 +69,6 @@ function create(db) {
     
     // Add mail functionality (from ronaldpiku.com)
     app.mail = require('./mail');
-
-	// Setup oauth model
-	/*app.oauth = oauthServer({
-		model: require('./oauth-model')(db, logger),
-		grants: ['password'],
-		debug: true
-	});*/
 	
 	// Log ips
 	app.use(function(req, res, next) {
@@ -100,23 +79,9 @@ function create(db) {
 		}
 		next();
 	});
-
-	// Handle token grant requests
-	/*app.all('/oauth/token', app.oauth.grant());
-	
-	app.oauth.weakAuthentication = function() {
-		return function(req, res, next) {
-			var body = db.buildDocument(req.body, { clientId: 'string', clientSecret: 'string' });
-			if (body.clientId && body.clientSecret && body.clientId === config.appClientId && body.clientSecret === config.appClientSecret) {
-				return next();
-			}
-			res.json({ error: 'Authentication failed' });
-		}
-	}*/
     
     var untracked = [
         '^\/vid', // videos load incrementally and may send many requests
-        '^\/favicon.ico', // sometimes automatically attempts to load the favicon
         '^\/analytics',
         '^\/analytics2',
         '^\/api/viewdata',
