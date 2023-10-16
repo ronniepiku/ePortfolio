@@ -162,7 +162,7 @@
     text-align: center;
     color: white;
     background-color: black;
-    background:linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)), url("../img/London.JPG");
+    background:linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)), url("/img/London.jpg");
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-attachment: fixed;
