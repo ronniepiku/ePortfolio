@@ -16,7 +16,7 @@ var config = {
 			index: 'index.html',
 			schedule: 'schedule.html',
 			CV: 'doc/Ronald_Piku_CV.pdf',
-            Dissertation: 'doc/Ronald_Piku_dissertation.pdf',
+            Dissertation: 'doc/Ronald_Piku_Dissertation.pdf',
 			dashboard: 'dashboard/index.html',
 			collage: 'dashboard/collage/index.html',
 			gas: 'dashboard/gas/index.html',
