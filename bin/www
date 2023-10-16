@@ -11,7 +11,7 @@ var config = require('../config');
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
-const { MongoClient } = require('mongodb'); // Include the MongoDB Node.js driver
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
 /**
  * Replace these with your MongoDB Atlas credentials
@@ -24,20 +24,30 @@ const cluster = eportfolio.rfreo6u
 // Create a MongoDB Atlas connection string
 const uri = `mongodb+srv://${username}:${password}@${cluster}.mongodb.net/?retryWrites=true&w=majority`;
 
-// Create a MongoDB client
-const client = new MongoClient(uri, { useUnifiedTopology: true });
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
 
 // Attempt to connect to the MongoDB Atlas cluster
-client.connect()
-  .then(() => {
-    console.log('Connected to MongoDB Atlas');
 
-    // Start the server
-    startServer(client);
-  })
-  .catch(err => {
-    console.error('Error connecting to MongoDB Atlas:', err);
-  });
+async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+run().catch(console.dir);
 
 /**
  * Attempt to connect to MongoDB database.
