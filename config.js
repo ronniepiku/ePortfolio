@@ -24,7 +24,7 @@ var config = {
             analytics: 'analytics.html',
 		},    
 		db: {
-			hostname: 'mongodb+srv://<username>:<password>@eportfolio.rfreo6u.mongodb.net/?retryWrites=true&w=majority',
+			hostname: 'mongodb://ac-xcfmeme-shard-00-00.rfreo6u.mongodb.net:27017',
 			mainDb: 'heroku_h5zdpd40',
 			useSSL: false,
 			required: true,
