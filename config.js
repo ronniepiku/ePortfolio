@@ -24,8 +24,8 @@ var config = {
             analytics: 'analytics.html',
 		},    
 		db: {
-			hostname: 'ds059165.mongolab.com',
-	        port: 59165,
+			hostname: 'ac-xcfmeme-shard-00-00.rfreo6u.mongodb.net',
+	        port: 27017,
 	        mainDb: 'heroku_h5zdpd40',
 	        useSSL: false,
 	        required: true,
