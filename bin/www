@@ -22,7 +22,7 @@ const cluster = ePortfolio.rfreo6u
 
 
 // Create a MongoDB Atlas connection string
-const uri = `mongodb+srv://${username}:${password}@${cluster}.mongodb.net/?retryWrites=true&w=majority`;
+const uri = "mongodb+srv://ronniepiku:Freeza21!@eportfolio.rfreo6u.mongodb.net/?retryWrites=true&w=majority";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
