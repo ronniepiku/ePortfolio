@@ -1,86 +1,61 @@
 #!/usr/bin/env node
-
+require('dotenv').config();
 /**
  * Load config file.
  */
-
 var config = require('../config');
 
 /**
  * Module dependencies.
  */
-
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
-var mongodb = require('mongodb');
+const { MongoClient } = require('mongodb'); // Include the MongoDB Node.js driver
+
+/**
+ * Replace these with your MongoDB Atlas credentials
+ */
+const username = process.env.MONGO_USERNAME;
+const password = process.env.MONGO_PASSWORD;
+const cluster = eportfolio.rfreo6u
+
+
+// Create a MongoDB Atlas connection string
+const uri = `mongodb+srv://${username}:${password}@${cluster}.mongodb.net/?retryWrites=true&w=majority`;
+
+// Create a MongoDB client
+const client = new MongoClient(uri, { useUnifiedTopology: true });
+
+// Attempt to connect to the MongoDB Atlas cluster
+client.connect()
+  .then(() => {
+    console.log('Connected to MongoDB Atlas');
+
+    // Start the server
+    startServer(client);
+  })
+  .catch(err => {
+    console.error('Error connecting to MongoDB Atlas:', err);
+  });
 
 /**
  * Attempt to connect to MongoDB database.
  */
-
-var MongoClient = mongodb.MongoClient;
-var dburi = 'mongodb://' + config.db.hostname + ':' + config.db.port + '/' + config.db.mainDb;
-MongoClient.connect(dburi, { server: { ssl: config.db.useSSL, sslValidate: false } }, function (err1, db) {
-  if (err1) {
-    db = null;
-    console.error(err1.toString());
-    if (!config.db.required) {
-      startServer(db);
-    }
-  }
-  else {
-    if (config.db.authenticate) {
-      db.authenticate(config.db.authentication.username, config.db.authentication.password, function (err2) {
-        if (err2) {
-          db.close();
-          db = null;
-          console.error(err2.toString());
-        }
-        if (db || !config.db.required) {
-          startServer(db);
-        }
-      });
-    }
-    else {
-      startServer(db);
-    }
-  }  
-});
-
-/**
- * Start the server.
- */
-
-var app;
-var server;
-var port;
-var logger;
-
 function startServer(db) {
-  
-  /*
-   * Create the app with reference to the db connection
-   */
-   
   if (!db) {
-    console.log('Warning: Running without db connection');
+    console.log('Warning: Running without a db connection');
   }
+  
   var temp = require('../app')(db);
-  app = temp[0];
-  logger = temp[1];
-  
-  /**
-   * Get port from environment and store in Express.
-   */
-  
-  port = process.env.PORT || config.server.port
+  var app = temp[0];
+  var logger = temp[1];
+
+  var port = process.env.PORT || config.server.port;
   app.set('port', port);
-  
-  /**
-   * Create HTTP/HTTPS server.
-   */
-    
+
+  var server;
+
   if (config.server.useHttps) {
     var options = {
       key: fs.readFileSync(config.server.https.keyPath),
@@ -88,47 +63,34 @@ function startServer(db) {
     };
     server = https.createServer(options, app);
     logger.info('HTTPS server listening on port %s', port);
-  }
-  else {
+  } else {
     server = http.createServer(app);
     logger.info('HTTP server listening on port %s', port);
   }
-  
+
   console.log('========================================');
-  
-  /**
-   * Listen on provided port, on all network interfaces.
-   */
-  
+
   server.listen(port);
   server.on('error', onError);
-  
 }
 
 /**
  * Normalize a port into a number, string, or false.
  */
-
 function normalizePort(val) {
   var port = parseInt(val, 10);
-
   if (isNaN(port)) {
-    // named pipe
     return val;
   }
-
   if (port >= 0) {
-    // port number
     return port;
   }
-
   return false;
 }
 
 /**
  * Event listener for HTTP server "error" event.
  */
-
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
@@ -138,14 +100,13 @@ function onError(error) {
     ? 'Pipe ' + port
     : 'Port ' + port;
 
-  // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      logger.error(bind + ' requires elevated privileges');
+      console.error(bind + ' requires elevated privileges');
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      logger.error(bind + ' is already in use');
+      console.error(bind + ' is already in use');
       process.exit(1);
       break;
     default:
