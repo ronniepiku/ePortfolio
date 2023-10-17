@@ -13,7 +13,7 @@ module.exports = function(db, logger){
 		res.sendFile(path.join(config.server.appDirectory, config.server.publicDirectory, config.server.Dissertation));
 	});
 
-	router.get('/mail', function(req, res, next) {
+	router.post('/mail', function(req, res, next) {
 		res.sendFile(path.join(config.server.appDirectory, config.server.routesDirectory, config.server.mail));
 	});
 
