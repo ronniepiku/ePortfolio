@@ -3,12 +3,24 @@ var express = require('express');
 var serveIndex = require('serve-index');
 var path = require('path');
 var fs = require('fs');
+var winston = require('winston');
 var morgan = require('morgan');
+
 
 function create(db) {
 
 	app = express();
-	app.use(morgan('dev'));
+
+	const logger = winston.createLogger({
+		level: 'info',
+		format: winston.format.simple(),
+		transports: [
+		  new winston.transports.Console(),
+		  new winston.transports.File({ filename: 'app.log' }),
+		],
+	  });
+
+	app.use(morgan('combined', { stream: { write: message => logger.info(message) } }));
     
 	// Configure paths
 	app.use('/', require(path.join(__dirname, config.server.routesDirectory, 'shortlinks'))(db, logger));
@@ -32,8 +44,8 @@ function create(db) {
     	res.send('<b>' + err.status + ':</b> ' + err.message);
     });
     
-	return [app, app.get('logger')];
-
+	app.set('logger', console);
+	return app;
 }
 
 module.exports = create;
