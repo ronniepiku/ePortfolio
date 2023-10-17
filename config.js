@@ -9,6 +9,7 @@ var config = {
 				certPath: ''
 			},
 			appDirectory: __dirname,
+			publicDirectory: 'public',
 			routesDirectory: 'routes',
 			CV: 'public/doc/Ronald_Piku_CV.pdf',
             Dissertation: 'public/doc/Ronald_Piku_Dissertation.pdf',
