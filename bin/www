@@ -10,6 +10,7 @@ var config = require('../config');
  */
 var fs = require('fs');
 var express = require('express');
+var create = require('./app');
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const mongoUsername = process.env.MONGO_USERNAME;
@@ -59,7 +60,7 @@ function normalizePort(val) {
   return false;
 }
 
-var [app, logger] = createApp();
+var [app, logger] = create();
 
 var port = normalizePort(process.env.PORT || config.server.port);
 app.set('port', port);
