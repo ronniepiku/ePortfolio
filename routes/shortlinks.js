@@ -5,11 +5,11 @@ var router = express.Router();
 module.exports = function(db, logger){
 
 	router.get('/CV', function(req, res, next) {
-		res.sendFile('/doc/Ronald_Piku_CV.pdf' , { root: __dirname });
+		res.redirect('/CV');
 	});
 
 	router.get('/Dissertation', function(req, res, next) {
-		res.sendFile('/doc/Ronald_Piku_Dissertation.pdf', { root: __dirname });
+		res.redirect('/Dissertation');
 	});
 
 	router.get('/about', function(req, res, next) {
