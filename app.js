@@ -20,10 +20,6 @@ function create(db) {
 		],
 	  });
 
-	  console.log('Resolved routes directory:', __dirname, config.server.routesDirectory);
-	  console.log('Resolved CV directory:', config.server.CV);
-	  console.log('Resolved Dissertation directory:', config.server.Dissertation);
-
 	app.use(morgan('combined', { stream: { write: message => logger.info(message) } }));
     
 	// Configure paths
