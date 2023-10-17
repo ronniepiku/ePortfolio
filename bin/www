@@ -5,6 +5,7 @@
  */
 var config = require('../config');
 var create = require('../app');
+var http = require('http');
 
 /**
  * Module dependencies.
@@ -60,7 +61,8 @@ function normalizePort(val) {
   return false;
 }
 
-var [app, logger] = create();
+var app = create();
+var logger = app.get('logger');
 
 var port = normalizePort(process.env.PORT || config.server.port);
 app.set('port', port);
