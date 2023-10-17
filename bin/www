@@ -8,11 +8,8 @@ var config = require('../config');
 /**
  * Module dependencies.
  */
-var http = require('http');
-var https = require('https');
 var fs = require('fs');
 var express = require('express');
-const forceHttps = require('express-force-https');
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const mongoUsername = process.env.MONGO_USERNAME;

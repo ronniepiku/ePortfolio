@@ -1,42 +1,11 @@
 {
-    "name": "ronaldpiku.com",
-    "version": "11.1.0",
-    "private": true,
-    "scripts": {
-        "start": "node ./bin/www"
-    },
+    "name": "my-node-app",
+    "version": "1.0.0",
+    "description": "A simple Node.js application",
+    "main": "app.js",
     "dependencies": {
-        "ansi-to-html": "^0.7.2",
-        "bcryptjs": "^2.4.3",
-        "body-parser": "^1.20.2",
-        "busboy": "^1.6.0",
-        "chalk": "^5.3.0",
-        "cheerio": "^1.0.0-rc.12",
-        "connect-busboy": "1.0.0",
-        "cookie-parser": "^1.4.6",
-        "country-code-lookup": "0.1.0",
-        "dns": "^0.2.2",
-        "dotenv": "^16.3.1",
-        "express": "^4.18.2",
-        "express-force-https": "^1.0.0",
-        "geoip-lite": "^1.4.7",
-        "iso-3166-2": "^1.0.0",
-        "mongodb": "^6.1.0",
-        "morgan": "^1.10.0",
-        "nodemailer": "^6.9.6",
-        "nodemailer-mailgun-transport": "^2.1.5",
-        "oauth2-server": "^3.1.1",
-        "parse-csv": "^0.2.0",
-        "parse-domain": "^7.0.1",
-        "path": "^0.12.7",
-        "request": "^2.81.0",
-        "serve-favicon": "^2.5.0",
-        "serve-index": "^1.9.1",
-        "unzip2": "^0.2.5",
-        "whois-ux": "0.0.2",
-        "winston": "^3.11.0"
-    },
-    "devDependencies": {
-        "@types/dotenv": "^8.2.0"
+      "express": "^4.17.1",
+      "mongodb": "^4.0.0",
+      "serve-index": "^1.8.0"
     }
-}
+  }
