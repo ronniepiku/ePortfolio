@@ -3,10 +3,12 @@ var express = require('express');
 var serveIndex = require('serve-index');
 var path = require('path');
 var fs = require('fs');
+var morgan = require('morgan');
 
 function create(db) {
 
 	app = express();
+	app.use(morgan('dev'));
     
 	// Configure paths
 	app.use('/', require(path.join(__dirname, config.server.routesDirectory, 'shortlinks'))(db, logger));
@@ -30,7 +32,7 @@ function create(db) {
     	res.send('<b>' + err.status + ':</b> ' + err.message);
     });
     
-	return [app, logger];
+	return [app, app.get('logger')];
 
 }
 
