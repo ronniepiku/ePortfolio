@@ -10,7 +10,7 @@ module.exports = function(db, logger){
 	});
 
 	router.get('/Dissertation', function(req, res, next) {
-		res.redirect(path.join(config.server.Dissertation));
+		res.redirect('/Dissertation');
 	});
 
 	router.get('/about', function(req, res, next) {
