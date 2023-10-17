@@ -21,11 +21,14 @@ function create(db) {
 	  });
 
 	app.use(morgan('combined', { stream: { write: message => logger.info(message) } }));
+
+	app.mail = require('./mail');
     
 	// Configure paths
 	app.use('/', require(path.join(__dirname, config.server.routesDirectory, 'shortlinks'))(db, logger));
 	app.use('/CV', require(path.join(__dirname, config.server.routesDirectory, 'CV'))(db, logger));
     app.use('/Dissertation', require(path.join(__dirname, config.server.routesDirectory, 'Dissertation'))(db, logger));
+	app.use('/mail', require(path.join(__dirname, config.server.routesDirectory, 'mail'))(db, logger));
 	app.use(express.static(path.join(__dirname, config.server.publicDirectory)));
 	
 	// Catch 404 and forward to error handler
