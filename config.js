@@ -10,8 +10,8 @@ var config = {
 			},
 			appDirectory: __dirname,
 			routesDirectory: 'routes',
-			CV: 'doc/Ronald_Piku_CV.pdf',
-            Dissertation: 'doc/Ronald_Piku_Dissertation.pdf',
+			CV: 'public/doc/Ronald_Piku_CV.pdf',
+            Dissertation: 'public/doc/Ronald_Piku_Dissertation.pdf',
 		},    
 		db: {
 			hostname: 'mongodb://ac-xcfmeme-shard-00-00.rfreo6u.mongodb.net:27017',
