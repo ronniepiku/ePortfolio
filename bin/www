@@ -22,7 +22,7 @@ var app = express();
 app.use(forceHttps);
 
 // Create a MongoDB Atlas connection string
-const uri = `mongodb+srv://${mongoUsername}:${mongoPassword}@eportfolio.rfreo6u.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://ronniepiku:Freeza21!@eportfolio.rfreo6u.mongodb.net/?retryWrites=true&w=majority`;
 
 // Create a MongoClient without specifying the serverApi version
 const client = new MongoClient(uri,  {
