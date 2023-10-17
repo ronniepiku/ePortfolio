@@ -2,7 +2,7 @@ var fs = require('fs')
 
 var config = {
 		server: {
-			port: 80,
+			port: process.env.PORT || 80,
 			useHttps: false,
 			https: {
 				keyPath: '',
