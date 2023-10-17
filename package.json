@@ -3,7 +3,7 @@
     "version": "11.1.0",
     "private": true,
     "scripts": {
-        "start": "npm start"
+        "start": "node ./bin/www"
     },
     "dependencies": {
         "ansi-to-html": "^0.7.2",
