@@ -10,7 +10,7 @@ var config = require('../config');
  */
 var fs = require('fs');
 var express = require('express');
-var create = require('./app');
+var create = require('app.js');
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const mongoUsername = process.env.MONGO_USERNAME;
