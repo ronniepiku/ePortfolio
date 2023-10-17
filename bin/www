@@ -27,7 +27,6 @@ const client = new MongoClient(uri,  {
       strict: true,
       deprecationErrors: true,
   },
-  tls: true
 }
 );
 
@@ -47,38 +46,6 @@ async function run() {
 run().catch(console.dir);
 
 /**
- * Attempt to connect to MongoDB database.
- */
-function startServer(db) {
-  if (!db) {
-    console.log('Warning: Running without a db connection');
-  }
-  
-  var temp = require('../app')(db);
-  var app = temp[0];
-  var logger = temp[1];
-
-  var port = normalizePort(process.env.PORT || config.server.port);
-  app.set('port', port);
-
-  var server;
-
-  if (config.server.useHttps) {
-    var options = {
-      key: fs.readFileSync(config.server.https.keyPath),
-      cert: fs.readFileSync(config.server.https.certPath)
-    };
-    server = https.createServer(options, app);
-    console.log('HTTPS server listening on port %s', port);
-  } else {
-    server = http.createServer(app);
-    console.log('HTTP server listening on port %s', port);
-  }
-
-  server.listen(port);
-}
-
-/**
  * Normalize a port into a number, string, or false.
  */
 function normalizePort(val) {
@@ -91,6 +58,27 @@ function normalizePort(val) {
   }
   return false;
 }
+
+var [app, logger] = createApp();
+
+var port = normalizePort(process.env.PORT || config.server.port);
+app.set('port', port);
+
+var server;
+
+if (config.server.useHttps) {
+  var options = {
+    key: fs.readFileSync(config.server.https.keyPath),
+    cert: fs.readFileSync(config.server.https.certPath)
+  };
+  server = https.createServer(options, app);
+  console.log('HTTPS server listening on port %s', port);
+} else {
+  server = http.createServer(app);
+  console.log('HTTP server listening on port %s', port);
+}
+
+server.listen(port);
 
 /**
  * Event listener for HTTP server "error" event.
