@@ -63,23 +63,23 @@ function startServer(db) {
   var logger = temp[1];
 
   var port = normalizePort(process.env.PORT || config.server.port);
-app.set('port', port);
+  app.set('port', port);
 
-var server;
+  var server;
 
-if (config.server.useHttps) {
-  var options = {
-    key: fs.readFileSync(config.server.https.keyPath),
-    cert: fs.readFileSync(config.server.https.certPath)
-  };
-  server = https.createServer(options, app);
-  console.log('HTTPS server listening on port %s', port);
-} else {
-  server = http.createServer(app);
-  console.log('HTTP server listening on port %s', port);
-}
+  if (config.server.useHttps) {
+    var options = {
+      key: fs.readFileSync(config.server.https.keyPath),
+      cert: fs.readFileSync(config.server.https.certPath)
+    };
+    server = https.createServer(options, app);
+    console.log('HTTPS server listening on port %s', port);
+  } else {
+    server = http.createServer(app);
+    console.log('HTTP server listening on port %s', port);
+  }
 
-server.listen(port);
+  server.listen(port);
 }
 
 /**
@@ -121,8 +121,3 @@ function onError(error) {
       throw error;
   }
 }
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
