@@ -4,13 +4,13 @@
  * Load config file.
  */
 var config = require('../config');
+var create = require('../app');
 
 /**
  * Module dependencies.
  */
 var fs = require('fs');
 var express = require('express');
-var create = require('./app.js');
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const mongoUsername = process.env.MONGO_USERNAME;
