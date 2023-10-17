@@ -5,11 +5,11 @@ var router = express.Router();
 module.exports = function(db, logger){
 
 	router.get('/CV', function(req, res, next) {
-		res.redirect('/CV');
+		res.sendFile(path.join(config.server.appDirectory, config.server.publicDirectory, config.server.CV));
 	});
-
+	
 	router.get('/Dissertation', function(req, res, next) {
-		res.redirect('/Dissertation');
+		res.sendFile(path.join(config.server.appDirectory, config.server.publicDirectory, config.server.Dissertation));
 	});
 
 	router.get('/about', function(req, res, next) {
