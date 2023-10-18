@@ -5,6 +5,7 @@ var path = require('path');
 var fs = require('fs');
 var winston = require('winston');
 var morgan = require('morgan');
+const mailRouter = require('./mailRouter');
 
 
 function create(db) {
@@ -26,7 +27,8 @@ function create(db) {
 	app.use('/', require(path.join(__dirname, config.server.routesDirectory, 'shortlinks'))(db, logger));
 	app.use('/CV', require(path.join(__dirname, config.server.routesDirectory, 'CV'))(db, logger));
     app.use('/Dissertation', require(path.join(__dirname, config.server.routesDirectory, 'Dissertation'))(db, logger));
-	app.use('/mail', require(path.join(__dirname, config.server.routesDirectory, 'mail')));
+	app.use(bodyParser.urlencoded({ extended: false }));
+	app.use('/mail', mailRouter);
 	app.use(express.static(path.join(__dirname, config.server.publicDirectory)));
 	
 	// Catch 404 and forward to error handler
