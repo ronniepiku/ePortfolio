@@ -13,7 +13,7 @@ var config = {
 			routesDirectory: 'routes',
 			CV: 'doc/Ronald_Piku_CV.pdf',
             Dissertation: 'doc/Ronald_Piku_Dissertation.pdf',
-			mail: 'mail'
+			mail: 'mail.js'
 		},    
 		db: {
 			hostname: 'mongodb://ac-xcfmeme-shard-00-00.rfreo6u.mongodb.net:27017',
