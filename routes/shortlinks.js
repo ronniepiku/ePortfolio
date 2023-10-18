@@ -13,6 +13,10 @@ module.exports = function(db, logger){
 		res.sendFile(path.join(config.server.appDirectory, config.server.publicDirectory, config.server.Dissertation));
 	});
 
+	router.post('/mail', function(req, res, next) {
+		res.sendFile(path.join(config.server.appDirectory, config.server.routesDirectory, config.server.mail));
+	});
+
 	router.get('/about', function(req, res, next) {
 		res.redirect('/#about');
 	});

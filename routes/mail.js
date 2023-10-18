@@ -10,10 +10,10 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-request.post('/mail', (req, res) => {
-	const from = req.body.email;
-	const subject = req.body.subject || 'Contact Form Submission';
-	const message = `Name: ${req.body.name}\nPhone: ${req.body.phone}\nMessage: ${req.body.message}`;
+router.post('/mail', (req, res) => {
+  const from = req.body.email;
+  const subject = req.body.subject || 'Contact Form Submission';
+  const message = `Name: ${req.body.name}\nPhone: ${req.body.phone}\nMessage: ${req.body.message}`;
 
   const mailOptions = {
     from: from,
