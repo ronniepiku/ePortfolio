@@ -5,7 +5,7 @@ var path = require('path');
 var fs = require('fs');
 var winston = require('winston');
 var morgan = require('morgan');
-const mailRouter = require('./mailRouter');
+const mailRouter = require('./routes/mail');
 
 
 function create(db) {
