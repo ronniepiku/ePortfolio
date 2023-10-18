@@ -2,16 +2,15 @@ module.exports = mail;
 
 var fs = require('fs');
 var nodemailer = require('nodemailer');
-var mg = require('nodemailer-mailgun-transport');
 
-var transporter = nodemailer.createTransport(
-    mg({
-        auth: {
-            api_key: process.env.MAILGUN_KEY || '0',
-            domain: 'www.ronaldpiku.com'
-        }
-    })
-);
+const transporter = nodemailer.createTransport({
+	service: 'hotmail',
+	auth: {
+	  user: 'ronniepiku1@hotmail.co.uk',
+	  pass: process.env.EMAIL_PASSWORD,
+	},
+  });
+
 
 function mail(to, subject, message, isHtml, callback) {
 	if (Array.isArray(to)) {
@@ -42,7 +41,10 @@ function mail(to, subject, message, isHtml, callback) {
 		};
 		if (isHtml) {
 			mailOptions.html = message;
-		}
+		  } else {
+			mailOptions.text = message;
+		  }
+
 		transporter.sendMail(mailOptions, function(error, info){
 			var successful = true;
 			if (error) {
@@ -50,7 +52,7 @@ function mail(to, subject, message, isHtml, callback) {
 				successful = false;
 			}
 			else {
-				console.log('Message sent: ' + JSON.stringify(info));
+				console.log('Message sent: ' + info.response);
 			}
 			if (callback) {
 				callback(successful);
