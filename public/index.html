@@ -333,8 +333,8 @@
             <a class="portfolio-item" data-toggle="modal" href="#portfolioModal5">
               <span class="caption">
                 <span class="caption-content">
-                  <h4>Chat GPT Clone</h4>
-                  <p class="mb-0">Pretty self-explanatory</p>
+                  <h4>Shakespeare GPT</h4>
+                  <p class="mb-0">Generate text in the style of the legendary playwright</p>
                 </span>
               </span>
               <img class="img-fluid portfolio-img" height="250" src="/img/GPT.png" alt="">
@@ -770,10 +770,11 @@
             <div class="row">
               <div class="col-lg-10 mx-auto">
                 <div class="modal-body">
-                  <h2>ChatGPT Clone</h2>
-                  <p class="lead">A clone app of ChatGPT developed and hosted using react.</p>
-                  <p class="lead">Initially, this project was used as a proof of concept to help a friend's company integrate AI into their business operations. Therefore, the first version of this app uses the OpenAI API to take user input and generate an output.</p>
-                  <p class="lead">Although this works, in the state the app is in now, it provides little utility to the company. In the second version, the backend is being improved to use our own transformers to take input and generate responses. This will give more targeted and specialised answers to users and will also reduce reliability on OpenAI servers.</p>
+                  <h2>Shakespeare GPT</h2>
+                  <p class="lead">Generates random text in the style of Shakespeare.</p>
+                  <p class="lead">In this project, a transformer model was developed to generate random text in the style of William Shakespeare plays. The input data provided was all Shakespeare's work which was fed into the model as a text file.</p>
+                  <p class="lead">First, a mapping is created to identify all unique characters used in the data and then assign them integer values. This is the encoding and decoding step. Then data is split and fed into the model in batches. The model used is a Bigram model which contains Multi Head Attention and a Feed Forward class which contains linear layers followed by non-linearity. These are called and followed by normalization layers to create transformer blocks. These are then called in the Bigram Language Model.</p>
+                  <p class="lead">The shortfall of this project is that the output isn't entirely cohesive. Although readable text is generated, it doesn't quite make sense, and this is shown by a rather high loss during training. The loss can be reduced by increasing the number of epochs, but due to no GPU on my computer I have avoided doing this as training takes way too long. The next steps to improve this project would be to train on a GPU for longer and then create an agent where the user could have a conversation with Shakespeare. To do so, I would have to generate and provided labelled data since there isn't much more text from Shakespear available to use.</p>
                   <div class="lead mb-4">
                     <b>View this project on GitHub: </b>
                     <a href="https://github.com/ronniepiku/ChatGPT_Clone" target="blank">https://github.com/ronniepiku/ChatGPT_Clone</a>
